@@ -13,7 +13,7 @@ public class Main extends Application{
     public void start(Stage stage){
     stage.setTitle("Stellar Duel");
     MenuView menuView = new MenuView();
-    GameController gameController = new GameController();
+    GameController gameController = new GameController(stage);
     MenuController menuController = new MenuController(menuView, gameController);
 
 

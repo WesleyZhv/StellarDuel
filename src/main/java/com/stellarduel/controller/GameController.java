@@ -1,14 +1,21 @@
 package com.stellarduel.controller;
 
 import com.stellarduel.model.*;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import com.stellarduel.view.*;
 
 public class GameController {
 
     private Partie partie;
+    private Stage stage;
 
-    public GameController(){}
+    public GameController(Stage stage){
+        this.stage = stage;
+    }
 
     public void initialiserPartie(String nomJoueur) {
+
         Joueur joueur1 = new Joueur(nomJoueur, false);
         Joueur joueur2 = new Joueur("IA", true);
         Grille grille = new Grille();
@@ -46,6 +53,9 @@ public class GameController {
         grille.placerVaisseau(kamikazeIA, 3, 7);
 
         this.partie = new Partie(joueur1, joueur2, grille);
+
+        GameView gameView = new GameView();
+        stage.setScene(new Scene(gameView, 800, 600));
     }
 
     public void deplacerVaisseau(Vaisseau vaisseau, int x, int y){
