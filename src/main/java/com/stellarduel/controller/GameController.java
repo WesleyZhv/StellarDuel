@@ -62,6 +62,7 @@ public class GameController {
         stage.setScene(new Scene(gameView, 800, 600));
         rafraichirGrille();
         brancherClics();
+        brancherBoutons();
     }
 
     public void deplacerVaisseau(Vaisseau vaisseau, int x, int y){
@@ -113,6 +114,8 @@ public class GameController {
         for (Vaisseau v : partie.getJoueur2().getFlotteVivante()) {
             gameView.getCase(v.getPosX(), v.getPosY()).setFill(Color.RED);
         }
+        gameView.getLabelJoueur().setText("Joueur actif : " + partie.getJoueurActif().getNom());
+        gameView.getLabelTour().setText("Tour : " + partie.getTourNumero());
     }
 
     public void brancherClics() {
@@ -141,5 +144,12 @@ public class GameController {
 
             }
         }
+    }
+
+    public void brancherBoutons(){
+        gameView.getBoutonFinTour().setOnAction(e -> {
+            finDeTour();
+            rafraichirGrille();
+        });
     }
 }
