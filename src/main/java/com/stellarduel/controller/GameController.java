@@ -5,6 +5,8 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import com.stellarduel.view.*;
 import javafx.scene.paint.Color;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class GameController {
 
@@ -123,6 +125,14 @@ public class GameController {
         }
         gameView.getLabelJoueur().setText("Joueur actif : " + partie.getJoueurActif().getNom());
         gameView.getLabelTour().setText("Tour : " + partie.getTourNumero());
+
+        if(partie.isPartieTerminee()){
+            Joueur gagnant = partie.getGagnant();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Partie terminée");
+            alert.setHeaderText(gagnant.getNom() + " a gagné !");
+            alert.showAndWait();
+        }
     }
 
     public void brancherClics() {
@@ -142,7 +152,7 @@ public class GameController {
                         vaisseauSelectionne = null;
                         rafraichirGrille();
                     }
-                    else if(v != null && vaisseauSelectionne != null && partie.getJoueur2().getFlotte().contains(v)){
+                    else if(v != null && vaisseauSelectionne != null && partie.getJoueur2().getFlotteVivante().contains(v)){
                         attaquer(vaisseauSelectionne, v);
                         vaisseauSelectionne = null;
                         rafraichirGrille();
