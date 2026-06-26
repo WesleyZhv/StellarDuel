@@ -43,7 +43,7 @@ public class GameView extends BorderPane{
         return this.grillePane;
     }
 
-    public Rectangle getCases(int x, int y){
+    public Rectangle getCase(int x, int y){
         return this.grilleCases[x][y];
     }
 

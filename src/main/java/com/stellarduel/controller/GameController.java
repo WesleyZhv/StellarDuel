@@ -4,11 +4,13 @@ import com.stellarduel.model.*;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import com.stellarduel.view.*;
+import javafx.scene.paint.Color;
 
 public class GameController {
 
     private Partie partie;
     private Stage stage;
+    private GameView gameView;
 
     public GameController(Stage stage){
         this.stage = stage;
@@ -54,8 +56,9 @@ public class GameController {
 
         this.partie = new Partie(joueur1, joueur2, grille);
 
-        GameView gameView = new GameView();
+        this.gameView = new GameView();
         stage.setScene(new Scene(gameView, 800, 600));
+        rafraichirGrille();
     }
 
     public void deplacerVaisseau(Vaisseau vaisseau, int x, int y){
@@ -69,6 +72,7 @@ public class GameController {
 
         partie.getGrille().retirerVaisseau(vaisseau.getPosX(), vaisseau.getPosY());
         partie.getGrille().placerVaisseau(vaisseau, x, y);
+
     }
 
     public void attaquer(Vaisseau attaquant, Vaisseau cible){
@@ -92,5 +96,19 @@ public class GameController {
 
     public Partie getPartie(){
         return this.partie;
+    }
+
+    public void rafraichirGrille(){
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                gameView.getCase(x, y).setFill(Color.DARKBLUE);
+            }
+        }
+        for (Vaisseau v : partie.getJoueur1().getFlotteVivante()) {
+            gameView.getCase(v.getPosX(), v.getPosY()).setFill(Color.CYAN);
+        }
+        for (Vaisseau v : partie.getJoueur2().getFlotteVivante()) {
+            gameView.getCase(v.getPosX(), v.getPosY()).setFill(Color.RED);
+        }
     }
 }
