@@ -11,9 +11,11 @@ public class GameController {
     private Partie partie;
     private Stage stage;
     private GameView gameView;
+    private Vaisseau vaisseauSelectionne;
 
     public GameController(Stage stage){
         this.stage = stage;
+        this.vaisseauSelectionne = null;
     }
 
     public void initialiserPartie(String nomJoueur) {
@@ -59,6 +61,7 @@ public class GameController {
         this.gameView = new GameView();
         stage.setScene(new Scene(gameView, 800, 600));
         rafraichirGrille();
+        brancherClics();
     }
 
     public void deplacerVaisseau(Vaisseau vaisseau, int x, int y){
@@ -109,6 +112,29 @@ public class GameController {
         }
         for (Vaisseau v : partie.getJoueur2().getFlotteVivante()) {
             gameView.getCase(v.getPosX(), v.getPosY()).setFill(Color.RED);
+        }
+    }
+
+    public void brancherClics() {
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                final int fx = x;
+                final int fy = y;
+                gameView.getCase(fx, fy).setOnMouseClicked(e -> {
+                    Vaisseau v = partie.getGrille().getVaisseau(fx, fy);
+                    if (v != null && partie.getJoueur1().getFlotte().contains(v)) {
+                        vaisseauSelectionne = v;
+                        rafraichirGrille();
+                        gameView.getCase(fx, fy).setFill(Color.YELLOW);
+                    }
+                    else if(v == null && vaisseauSelectionne != null){
+                        deplacerVaisseau(vaisseauSelectionne, fx,fy);
+                        vaisseauSelectionne = null;
+                        rafraichirGrille();
+                    }
+                });
+
+            }
         }
     }
 }
