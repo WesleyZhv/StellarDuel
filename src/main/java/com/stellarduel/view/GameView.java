@@ -7,8 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 
-public class GameView extends BorderPane{
+public class GameView extends StackPane{
 
     private Rectangle[][] grilleCases;
     private GridPane grillePane;
@@ -17,6 +18,7 @@ public class GameView extends BorderPane{
     private Button boutonFinTour;
     private Button boutonSauvegarder;
     private Button boutonCharger;
+    private EtoileAnimation etoile;
 
     public GameView(){
         this.grilleCases = new Rectangle[8][8];
@@ -36,10 +38,16 @@ public class GameView extends BorderPane{
                 grillePane.add(rect, x,y);
             }
         }
+        BorderPane contenu = new BorderPane();
         VBox panneauInfo = new VBox(10, labelJoueur, labelTour, boutonSauvegarder, boutonCharger);
-        setCenter(grillePane);
-        setRight(panneauInfo);
-        setBottom(boutonFinTour);
+        contenu.setCenter(grillePane);
+        contenu.setRight(panneauInfo);
+        contenu.setBottom(boutonFinTour);
+
+
+        EtoileAnimation etoile = new EtoileAnimation(800, 600);
+        etoile.demarrer();
+        getChildren().addAll(etoile.getCanvas(), contenu);
     }
 
     public GridPane getGrillePane(){
