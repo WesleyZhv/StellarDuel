@@ -12,10 +12,12 @@ public class GameController {
     private Stage stage;
     private GameView gameView;
     private Vaisseau vaisseauSelectionne;
+    private IAController iaController;
 
     public GameController(Stage stage){
         this.stage = stage;
         this.vaisseauSelectionne = null;
+        this.iaController = new IAController();
     }
 
     public void initialiserPartie(String nomJoueur) {
@@ -96,6 +98,11 @@ public class GameController {
     public void finDeTour(){
         partie.changerTour();
         partie.verifierFinDePartie();
+        if (partie.getJoueurActif().estIA()) {
+            iaController.jouerTour(partie, this);
+            rafraichirGrille();
+            partie.changerTour();
+        }
     }
 
     public Partie getPartie(){
