@@ -127,12 +127,14 @@ public class GameController {
         gameView.getLabelTour().setText("Tour : " + partie.getTourNumero());
 
         if(partie.isPartieTerminee()){
-            Joueur gagnant = partie.getGagnant();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Partie terminée");
-            alert.setHeaderText(gagnant.getNom() + " a gagné !");
-            alert.showAndWait();
+            VictoryView victoryView = new VictoryView(partie.getGagnant().getNom());
+            stage.setScene(new Scene(victoryView, 800,600));
+            victoryView.getBoutonRejouer().setOnAction( e->{
+               stage.setScene( new Scene(new MenuView(), 800, 600));
+            });
         }
+
+
     }
 
     public void brancherClics() {
