@@ -1,0 +1,289 @@
+{
+  "joueur1": {
+    "nom": "okokokkkokokoko",
+    "flotte": [
+      {
+        "nom": "Titan",
+        "type": "TANK",
+        "pointDeVie": 200,
+        "degats": 20,
+        "portee": 2,
+        "posX": 0,
+        "posY": 0,
+        "vivant": true
+      },
+      {
+        "nom": "Ghost",
+        "type": "SNIPER",
+        "pointDeVie": -20,
+        "degats": 80,
+        "portee": 5,
+        "posX": 1,
+        "posY": 0,
+        "vivant": false
+      },
+      {
+        "nom": "Medic",
+        "type": "SUPPORT",
+        "pointDeVie": 100,
+        "degats": 30,
+        "portee": 3,
+        "posX": 2,
+        "posY": 0,
+        "vivant": true
+      },
+      {
+        "nom": "Kamikaze",
+        "type": "KAMIKAZE",
+        "pointDeVie": 80,
+        "degats": 120,
+        "portee": 1,
+        "posX": 3,
+        "posY": 0,
+        "vivant": true
+      }
+    ],
+    "estIA": false
+  },
+  "joueur2": {
+    "nom": "IA",
+    "flotte": [
+      {
+        "nom": "Titan IA",
+        "type": "TANK",
+        "pointDeVie": 200,
+        "degats": 20,
+        "portee": 2,
+        "posX": 0,
+        "posY": 4,
+        "vivant": true
+      },
+      {
+        "nom": "Ghost IA",
+        "type": "SNIPER",
+        "pointDeVie": 60,
+        "degats": 80,
+        "portee": 5,
+        "posX": 1,
+        "posY": 5,
+        "vivant": true
+      },
+      {
+        "nom": "Medic IA",
+        "type": "SUPPORT",
+        "pointDeVie": 100,
+        "degats": 30,
+        "portee": 3,
+        "posX": 2,
+        "posY": 4,
+        "vivant": true
+      },
+      {
+        "nom": "Kamikaze IA",
+        "type": "KAMIKAZE",
+        "pointDeVie": 80,
+        "degats": 120,
+        "portee": 1,
+        "posX": 3,
+        "posY": 4,
+        "vivant": true
+      }
+    ],
+    "estIA": true
+  },
+  "joueurActif": {
+    "nom": "okokokkkokokoko",
+    "flotte": [
+      {
+        "nom": "Titan",
+        "type": "TANK",
+        "pointDeVie": 200,
+        "degats": 20,
+        "portee": 2,
+        "posX": 0,
+        "posY": 0,
+        "vivant": true
+      },
+      {
+        "nom": "Ghost",
+        "type": "SNIPER",
+        "pointDeVie": -20,
+        "degats": 80,
+        "portee": 5,
+        "posX": 1,
+        "posY": 0,
+        "vivant": false
+      },
+      {
+        "nom": "Medic",
+        "type": "SUPPORT",
+        "pointDeVie": 100,
+        "degats": 30,
+        "portee": 3,
+        "posX": 2,
+        "posY": 0,
+        "vivant": true
+      },
+      {
+        "nom": "Kamikaze",
+        "type": "KAMIKAZE",
+        "pointDeVie": 80,
+        "degats": 120,
+        "portee": 1,
+        "posX": 3,
+        "posY": 0,
+        "vivant": true
+      }
+    ],
+    "estIA": false
+  },
+  "grille": {
+    "cases": [
+      [
+        {
+          "nom": "Titan",
+          "type": "TANK",
+          "pointDeVie": 200,
+          "degats": 20,
+          "portee": 2,
+          "posX": 0,
+          "posY": 0,
+          "vivant": true
+        },
+        null,
+        null,
+        null,
+        {
+          "nom": "Titan IA",
+          "type": "TANK",
+          "pointDeVie": 200,
+          "degats": 20,
+          "portee": 2,
+          "posX": 0,
+          "posY": 4,
+          "vivant": true
+        },
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        {
+          "nom": "Ghost IA",
+          "type": "SNIPER",
+          "pointDeVie": 60,
+          "degats": 80,
+          "portee": 5,
+          "posX": 1,
+          "posY": 5,
+          "vivant": true
+        },
+        null,
+        null
+      ],
+      [
+        {
+          "nom": "Medic",
+          "type": "SUPPORT",
+          "pointDeVie": 100,
+          "degats": 30,
+          "portee": 3,
+          "posX": 2,
+          "posY": 0,
+          "vivant": true
+        },
+        null,
+        null,
+        null,
+        {
+          "nom": "Medic IA",
+          "type": "SUPPORT",
+          "pointDeVie": 100,
+          "degats": 30,
+          "portee": 3,
+          "posX": 2,
+          "posY": 4,
+          "vivant": true
+        },
+        null,
+        null,
+        null
+      ],
+      [
+        {
+          "nom": "Kamikaze",
+          "type": "KAMIKAZE",
+          "pointDeVie": 80,
+          "degats": 120,
+          "portee": 1,
+          "posX": 3,
+          "posY": 0,
+          "vivant": true
+        },
+        null,
+        null,
+        null,
+        {
+          "nom": "Kamikaze IA",
+          "type": "KAMIKAZE",
+          "pointDeVie": 80,
+          "degats": 120,
+          "portee": 1,
+          "posX": 3,
+          "posY": 4,
+          "vivant": true
+        },
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "tourNumero": 7,
+  "partieTerminee": false
+}

@@ -15,6 +15,8 @@ public class GameView extends BorderPane{
     private Label labelTour;
     private Label labelJoueur;
     private Button boutonFinTour;
+    private Button boutonSauvegarder;
+    private Button boutonCharger;
 
     public GameView(){
         this.grilleCases = new Rectangle[8][8];
@@ -22,7 +24,8 @@ public class GameView extends BorderPane{
         this.labelTour = new Label("Tour 1");
         this.labelJoueur = new Label("Joueur actif : ");
         this.boutonFinTour = new Button("Fin de tour");
-
+        this.boutonSauvegarder = new Button("Sauvegarder");
+        this.boutonCharger = new Button("Charger");
 
         for(int x = 0; x < 8 ;x++){
             for(int y = 0; y < 8 ;y++){
@@ -33,7 +36,7 @@ public class GameView extends BorderPane{
                 grillePane.add(rect, x,y);
             }
         }
-        VBox panneauInfo = new VBox(10, labelJoueur, labelTour);
+        VBox panneauInfo = new VBox(10, labelJoueur, labelTour, boutonSauvegarder, boutonCharger);
         setCenter(grillePane);
         setRight(panneauInfo);
         setBottom(boutonFinTour);
@@ -57,6 +60,14 @@ public class GameView extends BorderPane{
 
     public Button getBoutonFinTour(){
         return this.boutonFinTour;
+    }
+
+    public Button getBoutonSauvegarder(){
+        return this.boutonSauvegarder;
+    }
+
+    public Button getBoutonCharger(){
+        return this.boutonCharger;
     }
 
 }

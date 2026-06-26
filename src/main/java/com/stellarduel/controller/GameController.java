@@ -5,8 +5,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import com.stellarduel.view.*;
 import javafx.scene.paint.Color;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import com.stellarduel.storage.GameStorage;
 
 public class GameController {
 
@@ -15,11 +14,13 @@ public class GameController {
     private GameView gameView;
     private Vaisseau vaisseauSelectionne;
     private IAController iaController;
+    private GameStorage gameStorage;
 
-    public GameController(Stage stage){
+    public GameController(Stage stage) {
         this.stage = stage;
         this.vaisseauSelectionne = null;
         this.iaController = new IAController();
+        this.gameStorage = new GameStorage();
     }
 
     public void initialiserPartie(String nomJoueur) {
@@ -69,7 +70,7 @@ public class GameController {
         brancherBoutons();
     }
 
-    public void deplacerVaisseau(Vaisseau vaisseau, int x, int y){
+    public void deplacerVaisseau(Vaisseau vaisseau, int x, int y) {
         if (!partie.getGrille().estDansGrille(x, y)) {
             return;
         }
@@ -83,7 +84,7 @@ public class GameController {
 
     }
 
-    public void attaquer(Vaisseau attaquant, Vaisseau cible){
+    public void attaquer(Vaisseau attaquant, Vaisseau cible) {
         if (!attaquant.estAPortee(cible)) {
             return;
         }
@@ -97,7 +98,7 @@ public class GameController {
         partie.verifierFinDePartie();
     }
 
-    public void finDeTour(){
+    public void finDeTour() {
         partie.changerTour();
         partie.verifierFinDePartie();
         if (partie.getJoueurActif().estIA()) {
@@ -107,11 +108,11 @@ public class GameController {
         }
     }
 
-    public Partie getPartie(){
+    public Partie getPartie() {
         return this.partie;
     }
 
-    public void rafraichirGrille(){
+    public void rafraichirGrille() {
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 gameView.getCase(x, y).setFill(Color.DARKBLUE);
@@ -126,11 +127,11 @@ public class GameController {
         gameView.getLabelJoueur().setText("Joueur actif : " + partie.getJoueurActif().getNom());
         gameView.getLabelTour().setText("Tour : " + partie.getTourNumero());
 
-        if(partie.isPartieTerminee()){
+        if (partie.isPartieTerminee()) {
             VictoryView victoryView = new VictoryView(partie.getGagnant().getNom());
-            stage.setScene(new Scene(victoryView, 800,600));
-            victoryView.getBoutonRejouer().setOnAction( e->{
-               stage.setScene( new Scene(new MenuView(), 800, 600));
+            stage.setScene(new Scene(victoryView, 800, 600));
+            victoryView.getBoutonRejouer().setOnAction(e -> {
+                stage.setScene(new Scene(new MenuView(), 800, 600));
             });
         }
 
@@ -144,17 +145,15 @@ public class GameController {
                 final int fy = y;
                 gameView.getCase(fx, fy).setOnMouseClicked(e -> {
                     Vaisseau v = partie.getGrille().getVaisseau(fx, fy);
-                    if (v != null && partie.getJoueurActif().getFlotte().contains(v)){
+                    if (v != null && partie.getJoueurActif().getFlotte().contains(v)) {
                         vaisseauSelectionne = v;
                         rafraichirGrille();
                         gameView.getCase(fx, fy).setFill(Color.YELLOW);
-                    }
-                    else if(v == null && vaisseauSelectionne != null){
-                        deplacerVaisseau(vaisseauSelectionne, fx,fy);
+                    } else if (v == null && vaisseauSelectionne != null) {
+                        deplacerVaisseau(vaisseauSelectionne, fx, fy);
                         vaisseauSelectionne = null;
                         rafraichirGrille();
-                    }
-                    else if(v != null && vaisseauSelectionne != null && partie.getJoueur2().getFlotteVivante().contains(v)){
+                    } else if (v != null && vaisseauSelectionne != null && partie.getJoueur2().getFlotteVivante().contains(v)) {
                         attaquer(vaisseauSelectionne, v);
                         vaisseauSelectionne = null;
                         rafraichirGrille();
@@ -165,7 +164,16 @@ public class GameController {
         }
     }
 
-    public void brancherBoutons(){
+    public void brancherBoutons() {
+        gameView.getBoutonSauvegarder().setOnAction(e -> {
+            gameStorage.sauvegarder(partie);
+        });
+
+        gameView.getBoutonCharger().setOnAction(e -> {
+            partie = gameStorage.charger();
+            rafraichirGrille();
+        });
+
         gameView.getBoutonFinTour().setOnAction(e -> {
             finDeTour();
             rafraichirGrille();
