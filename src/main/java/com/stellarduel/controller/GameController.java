@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import com.stellarduel.view.*;
 import javafx.scene.paint.Color;
 import com.stellarduel.storage.GameStorage;
+import javafx.scene.control.Tooltip;
 
 public class GameController {
 
@@ -124,6 +125,17 @@ public class GameController {
         for (Vaisseau v : partie.getJoueur2().getFlotteVivante()) {
             gameView.getCase(v.getPosX(), v.getPosY()).setFill(Color.RED);
         }
+
+        for (Vaisseau v : partie.getJoueur1().getFlotteVivante()) {
+            Tooltip tip = new Tooltip(v.getNom() + "\nPV: " + v.getPointDeVie() + "\nDégâts: " + v.getDegats() + "\nPortée: " + v.getPortee());
+            Tooltip.install(gameView.getCase(v.getPosX(), v.getPosY()), tip);
+        }
+
+        for (Vaisseau v : partie.getJoueur2().getFlotteVivante()) {
+            Tooltip tip = new Tooltip(v.getNom() + "\nPV: " + v.getPointDeVie() + "\nDégâts: " + v.getDegats() + "\nPortée: " + v.getPortee());
+            Tooltip.install(gameView.getCase(v.getPosX(), v.getPosY()), tip);
+        }
+
         gameView.getLabelJoueur().setText("Joueur actif : " + partie.getJoueurActif().getNom());
         gameView.getLabelTour().setText("Tour : " + partie.getTourNumero());
 
