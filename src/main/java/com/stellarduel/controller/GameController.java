@@ -24,7 +24,7 @@ public class GameController implements IObservateur {
         this.gameStorage = new GameStorage();
     }
 
-    public void initialiserPartie(String nomJoueur) {
+    public void initialiserPartie(String nomJoueur, String difficulte) {
 
         Joueur joueur1 = new Joueur(nomJoueur, false);
         Joueur joueur2 = new Joueur("IA", true);
@@ -62,6 +62,11 @@ public class GameController implements IObservateur {
         grille.placerVaisseau(supportIA, 2, 7);
         grille.placerVaisseau(kamikazeIA, 3, 7);
 
+        if(difficulte.equals("Facile")){
+            this.iaController = new IAController(new StrategieIAFacile());
+        } else {
+            this.iaController = new IAController(new StrategieIANormale());
+        }
         this.partie = new Partie(joueur1, joueur2, grille);
         this.partie.ajouterObservateur(this);
 
@@ -70,6 +75,7 @@ public class GameController implements IObservateur {
         rafraichirGrille();
         brancherClics();
         brancherBoutons();
+
     }
 
     public void deplacerVaisseau(Vaisseau vaisseau, int x, int y) {

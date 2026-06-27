@@ -12,8 +12,11 @@ public class MenuController {
         this.gameController = gameController;
 
         this.menuView.getBoutonJoueur().setOnAction(e -> {
-        String nom = menuView.getChampNom().getText();
-        this.gameController.initialiserPartie(nom);
+                String nom = menuView.getChampNom().getText();
+                String difficulte = menuView.getComboDifficulte().getValue();
+                this.gameController.initialiserPartie(nom, difficulte);
+
         });
+
     }
 }

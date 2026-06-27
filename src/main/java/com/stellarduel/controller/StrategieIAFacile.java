@@ -3,7 +3,7 @@ package com.stellarduel.controller;
 import com.stellarduel.model.*;
 import java.util.*;
 
-public class StretegieIAFacile implements IStrategieIA{
+public class StrategieIAFacile implements IStrategieIA{
 
     public void jouer(Partie partie, GameController gameController){
         List<Vaisseau> flotteIA = partie.getJoueur2().getFlotteVivante();

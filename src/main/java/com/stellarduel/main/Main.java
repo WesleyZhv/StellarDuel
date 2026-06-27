@@ -16,10 +16,8 @@ public class Main extends Application{
     GameController gameController = new GameController(stage);
     MenuController menuController = new MenuController(menuView, gameController);
 
-
     stage.setScene(new Scene(menuView, 800,600));
     stage.show();
-
     }
 
     public static void main(String[] args){
