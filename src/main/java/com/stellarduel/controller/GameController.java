@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import com.stellarduel.storage.GameStorage;
 import javafx.scene.control.Tooltip;
 
-public class GameController {
+public class GameController implements IObservateur {
 
     private Partie partie;
     private Stage stage;
@@ -63,6 +63,7 @@ public class GameController {
         grille.placerVaisseau(kamikazeIA, 3, 7);
 
         this.partie = new Partie(joueur1, joueur2, grille);
+        this.partie.ajouterObservateur(this);
 
         this.gameView = new GameView();
         stage.setScene(new Scene(gameView, 800, 600));
@@ -190,5 +191,9 @@ public class GameController {
             finDeTour();
             rafraichirGrille();
         });
+    }
+
+    public void mettreAJour(){
+        rafraichirGrille();
     }
 }

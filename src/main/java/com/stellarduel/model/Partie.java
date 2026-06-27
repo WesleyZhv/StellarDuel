@@ -1,6 +1,8 @@
 package com.stellarduel.model;
 
-public class Partie {
+import java.util.*;
+
+public class Partie implements IObservable{
 
     private Joueur joueur1;
     private Joueur joueur2;
@@ -8,6 +10,7 @@ public class Partie {
     private Grille grille;
     private int tourNumero;
     private boolean partieTerminee;
+    private List<IObservateur> observateurs = new ArrayList<>();
 
     public Partie(Joueur joueur1, Joueur joueur2, Grille grille){
         this.joueur1 = joueur1;
@@ -49,11 +52,13 @@ public class Partie {
             joueurActif = joueur1;
         }
         this.tourNumero++;
+        notifierObservateurs();
     }
 
     public void verifierFinDePartie() {
         if (joueur1.estDefeated() || joueur2.estDefeated()) {
             this.partieTerminee = true;
+            notifierObservateurs();
         }
     }
 
@@ -69,5 +74,14 @@ public class Partie {
         }
     }
 
+    public void ajouterObservateur(IObservateur o){
+        observateurs.add(o);
+    }
+
+    public void notifierObservateurs(){
+        for(IObservateur obs : observateurs){
+            obs.mettreAJour();
+        }
+    }
 
 }
