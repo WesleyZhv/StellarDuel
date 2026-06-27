@@ -20,7 +20,7 @@ public class GameController implements IObservateur {
     public GameController(Stage stage) {
         this.stage = stage;
         this.vaisseauSelectionne = null;
-        this.iaController = new IAController();
+        this.iaController = new IAController(new StrategieIANormale());
         this.gameStorage = new GameStorage();
     }
 
