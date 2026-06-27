@@ -144,7 +144,9 @@ public class GameController implements IObservateur {
             VictoryView victoryView = new VictoryView(partie.getGagnant().getNom());
             stage.setScene(new Scene(victoryView, 800, 600));
             victoryView.getBoutonRejouer().setOnAction(e -> {
-                stage.setScene(new Scene(new MenuView(), 800, 600));
+                MenuView menuView = new MenuView();
+                new MenuController(menuView, this);
+                stage.setScene(new Scene(menuView, 800, 600));
             });
         }
 
