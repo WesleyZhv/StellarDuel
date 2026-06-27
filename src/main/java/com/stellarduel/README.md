@@ -11,16 +11,20 @@ Deuxième projet de portfolio après KitchenFlow, avec une architecture plus mat
 
 ## Concepts démontrés
 - Architecture MVC stricte (Model / View / Controller)
-- Intelligence Artificielle : algorithme Minimax (IA classique)
-- Programmation Orientée Objet avancée
-- JavaFX : GridPane, BorderPane, animations, gestion d'événements
-- Pattern Factory (VaisseauFactory)
-- Persistance JSON avec Gson (en cours)
+- Design Patterns : Factory, Observer, Strategy
+- Intelligence Artificielle : algorithme Minimax (profondeur 2)
+- Tests unitaires avec JUnit 5
+- JavaFX avancé : GridPane, BorderPane, StackPane, Canvas, AnimationTimer, Tooltip, ComboBox
+- Persistance JSON avec Gson
+- Sérialisation/désérialisation de parties sauvegardées
+
+## Niveaux de difficulté
+- **Facile** : IA simple, attaque le premier ennemi à portée
+- **Normal** : IA avec algorithme Minimax, anticipe 2 coups à l'avance
 
 ## Note sur l'IA
-L'IA de ce projet est une IA classique basée sur l'algorithme Minimax.
-C'est une première approche intentionnelle avant d'implémenter
-une vraie IA avec du Machine Learning (TensorFlow / DL4J) dans un prochain projet.
+Ce projet utilise une IA classique (Minimax) comme première approche intentionnelle
+avant d'implémenter du Machine Learning (TensorFlow / DL4J) dans un prochain projet.
 
 ## Lancer le projet
 Prérequis : Java 24, Maven
