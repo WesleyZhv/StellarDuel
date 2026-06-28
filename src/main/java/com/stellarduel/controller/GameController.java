@@ -24,27 +24,18 @@ public class GameController implements IObservateur {
         this.gameStorage = new GameStorage();
     }
 
-    public void initialiserPartie(String nomJoueur, String difficulte) {
+    public void initialiserPartie(String nomJoueur, String difficulte, String[] types, String[] noms) {
 
         Joueur joueur1 = new Joueur(nomJoueur, false);
         Joueur joueur2 = new Joueur("IA", true);
         Grille grille = new Grille();
 
         // Joueur 1
-        Vaisseau tank = VaisseauFactory.creer(VaisseauType.TANK, "Titan", 0, 0);
-        Vaisseau sniper = VaisseauFactory.creer(VaisseauType.SNIPER, "Ghost", 1, 0);
-        Vaisseau support = VaisseauFactory.creer(VaisseauType.SUPPORT, "Medic", 2, 0);
-        Vaisseau kamikaze = VaisseauFactory.creer(VaisseauType.KAMIKAZE, "Kamikaze", 3, 0);
-
-        joueur1.ajouterVaisseau(tank);
-        joueur1.ajouterVaisseau(sniper);
-        joueur1.ajouterVaisseau(support);
-        joueur1.ajouterVaisseau(kamikaze);
-
-        grille.placerVaisseau(tank, 0, 0);
-        grille.placerVaisseau(sniper, 1, 0);
-        grille.placerVaisseau(support, 2, 0);
-        grille.placerVaisseau(kamikaze, 3, 0);
+        for (int i = 0; i < 4; i++) {
+            Vaisseau v = VaisseauFactory.creer(VaisseauType.valueOf(types[i]), noms[i], i, 0);
+            joueur1.ajouterVaisseau(v);
+            grille.placerVaisseau(v, i, 0);
+        }
 
         // Joueur 2
         Vaisseau tankIA = VaisseauFactory.creer(VaisseauType.TANK, "Titan IA", 0, 7);
@@ -151,7 +142,7 @@ public class GameController implements IObservateur {
             stage.setScene(new Scene(victoryView, 800, 600));
             victoryView.getBoutonRejouer().setOnAction(e -> {
                 MenuView menuView = new MenuView();
-                new MenuController(menuView, this);
+                new MenuController(menuView, this, stage);
                 stage.setScene(new Scene(menuView, 800, 600));
             });
         }

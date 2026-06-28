@@ -48,6 +48,9 @@ public class GameView extends StackPane{
         EtoileAnimation etoile = new EtoileAnimation(800, 600);
         etoile.demarrer();
         getChildren().addAll(etoile.getCanvas(), contenu);
+
+        this.labelJoueur.setStyle("-fx-font-size: 16px; -fx-text-fill: #00aaff; -fx-font-weight: bold;");
+        this.labelTour.setStyle("-fx-font-size: 14px; -fx-text-fill: white;");
     }
 
     public GridPane getGrillePane(){

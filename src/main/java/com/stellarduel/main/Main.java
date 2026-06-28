@@ -14,7 +14,7 @@ public class Main extends Application{
     stage.setTitle("Stellar Duel");
     MenuView menuView = new MenuView();
     GameController gameController = new GameController(stage);
-    MenuController menuController = new MenuController(menuView, gameController);
+    MenuController menuController = new MenuController(menuView, gameController, stage);
 
     stage.setScene(new Scene(menuView, 800,600));
     stage.show();
