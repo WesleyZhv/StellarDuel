@@ -18,6 +18,14 @@ Deuxième projet de portfolio après KitchenFlow, avec une architecture plus mat
 - Persistance JSON avec Gson
 - Sérialisation/désérialisation de parties sauvegardées
 
+## Fonctionnalités
+- Sélection personnalisée de flotte avant chaque partie
+- 4 types de vaisseaux : Tank, Sniper, Support, Kamikaze
+- 2 niveaux de difficulté : Facile et Normal
+- Sauvegarde et chargement de partie
+- Fond étoilé animé
+- Statistiques des vaisseaux au survol
+
 ## Niveaux de difficulté
 - **Facile** : IA simple, attaque le premier ennemi à portée
 - **Normal** : IA avec algorithme Minimax, anticipe 2 coups à l'avance
